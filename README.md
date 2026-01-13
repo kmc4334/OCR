@@ -1,64 +1,121 @@
 # AI Visual Translator Evaluator (AI 시각 번역기 평가 도구)
 
-**VisualTrans AI**는 실시간으로 이미지를 분석하여 텍스트를 추출(OCR), 번역(Translation), 그리고 배경 복원(Inpainting) 및 합성(Synthesis)하는 전체 AI 파이프라인을 시각적으로 검증하고 평가하는 웹 플랫폼입니다.
+**VisualTrans AI**는 이미지를 입력으로 받아 텍스트를 추출(OCR)하고, 번역(Translation)한 뒤 배경 복원(Inpainting)과 텍스트 합성(Synthesis)을 수행하는 **엔드투엔드 AI 시각 번역 파이프라인**를 웹에서 시각적으로 검증·평가하는 플랫폼입니다.
 
-## 🌟 주요 업데이트 및 기능 (v1.0 Beta)
+번역 결과의 **정확도·의미 보존·품질 안정성**을 정량/정성적으로 평가하는 것을 목표로 합니다.
+
+---
+
+## 🌟 주요 기능 (v1.0 Beta)
 
 ### 1. 🌏 다국어 번역 지원 (Multi-Language Support)
-- **언어 선택 기능**: 사용자가 번역하고 싶은 **도착 언어(Target Language)**를 직접 선택할 수 있습니다.
-- **지원 언어**: 한국어(Korean), 영어(English), 중국어(Chinese), 일본어(Japanese), 스페인어(Spanish), 프랑스어(French).
-- 각 언어에 맞춘 AI 번역 최적화 프롬프트가 자동으로 적용됩니다.
+
+* **도착 언어(Target Language) 선택**: 사용자가 번역 결과 언어를 직접 지정
+* **지원 언어**: 한국어(Korean), 영어(English), 중국어(Chinese), 일본어(Japanese), 스페인어(Spanish), 프랑스어(French)
+* 언어별 특성을 반영한 **OpenAI 프롬프트 자동 최적화**
+
+---
 
 ### 2. 🎨 프리미엄 UI/UX & 한국어 최적화
-- **Glassmorphism Design**: 최신 트렌드를 반영한 투명 유리 패널 디자인과 부드러운 애니메이션 효과 적용.
-- **완벽한 한글화**: 모든 인터페이스, 메뉴, 안내 메시지, 결과 리포트가 **자연스러운 한국어**로 제공됩니다.
-- **반응형 웹**: 데스크탑 및 모바일 환경에 최적화된 레이아웃.
 
-### 3. 🚦 7단계 실시간 파이프라인 시각화
-- 이미지 업로드부터 최종 출력까지의 복잡한 AI 처리 과정을 7단계로 나누어 시각적으로 보여줍니다.
-- 단계: `Upload` → `OCR` → `Translation` → `Inpainting` → `Synthesis` → `Back-Trans` → `Output`
+* **Glassmorphism UI**: 투명 카드, 블러 효과, 부드러운 전환 애니메이션
+* **완전 한글화**: 모든 UI, 에러 메시지, 평가 리포트 한국어 제공
+* **반응형 웹**: 데스크톱 / 태블릿 / 모바일 대응
 
-### 4. 📊 AI 기반 품질 정밀 평가 Dashboard
-- **OpenAI GPT-4o**를 활용한 심층 분석 리포트를 제공합니다.
-- **의미 유사도(Semantic Similarity)** 점수 측정.
-- **품질 체크리스트**: 제품명, 카테고리, 성분 정보 등의 핵심 정보 유지 여부를 O/X로 검증.
-- **역번역(Back-Translation)** 검증을 통한 오역 방지.
+---
+
+### 3. 🚦 7단계 AI 처리 파이프라인 시각화
+
+이미지 업로드부터 결과 출력까지의 전 과정을 단계별로 시각화합니다.
+
+`Upload` → `OCR` → `Translation` → `Inpainting` → `Synthesis` → `Back-Translation` → `Output`
+
+* 각 단계별 **진행 상태 / 성공·실패 여부 / 결과 미리보기** 제공
+* 파이프라인 디버깅 및 데모 시연에 최적화
+
+---
+
+### 4. 📊 AI 기반 품질 평가 대시보드
+
+* **OpenAI GPT-4o** 기반 평가 분석
+* **의미 유사도(Semantic Similarity)** 점수 산출
+* **품질 체크리스트 자동 검증**
+
+  * 제품명 유지 여부
+  * 핵심 정보(성분, 카테고리 등) 보존 여부
+* **역번역(Back-Translation)**을 통한 오역·의미 손실 탐지
 
 ---
 
 ## 🛠️ 기술 스택 (Tech Stack)
 
-### Backend (AI Core)
-- **Framework**: FastAPI (Python 3.10+)
-- **AI Core**: OpenAI API (GPT-4o/3.5-turbo), EasyOCR, OpenCV, PyTorch
-- **Database**: MongoDB (Motor Async Driver)
+### 🔹 Backend (AI Core)
 
-### Frontend (User Interface)
-- **Framework**: React 18 (Vite)
-- **Styling**: Tailwind CSS v4, Lucide Icons
-- **Language**: JavaScript (ES6+)
+* **Language**: Python 3.10+
+* **Framework**: FastAPI
+* **Architecture**: Modular Pipeline 구조
+
+  * `OCREngine`: EasyOCR
+  * `Translator`: OpenAI GPT-3.5 / GPT-4o
+  * `Inpainter`: OpenCV (Telea Algorithm)
+  * `TextRenderer`: Pillow (PIL)
+* **Database**: MongoDB (Motor Async Driver)
+* **Env 관리**: python-dotenv
+
+---
+
+### 🔹 Frontend (Web UI)
+
+* **Framework**: React 18 (Vite)
+* **Styling**: Tailwind CSS v4
+* **Icons**: Lucide Icons
+* **Language**: JavaScript (ES6+)
+* **UX 포인트**:
+
+  * 단계별 파이프라인 시각화
+  * 실시간 상태 피드백
+  * 평가 결과 카드형 리포트
 
 ---
 
 ## 📦 설치 및 실행 가이드
 
 ### 1. 필수 요구사항
-- Python 3.8 이상
-- Node.js 18 이상
-- MongoDB (로컬 실행 또는 Atlas 클라우드 URL)
+
+* Python 3.8 이상
+* Node.js 18 이상
+* MongoDB (Local 또는 Atlas)
+
+---
 
 ### 2. 백엔드 서버 실행 (Port: 8000)
-프로젝트 루트 폴더(`OCR2`)에서 다음 명령어를 실행합니다.
+
+프로젝트 루트 폴더에서 실행합니다.
 
 ```bash
-# 가상환경 활성화 권장
 pip install -r requirements.txt
-python -m uvicorn app.main:app --reload
+python run_server.py
 ```
-> **API 키 설정**: `.env` 파일에 `OPENAI_API_KEY`를 설정하면 실제 번역이 수행되며, 설정하지 않으면 **데모(Mock) 데이터**로 동작하여 안전하게 UI를 테스트할 수 있습니다.
+
+> ⚠️ **중요**
+>
+> * `uvicorn main:app` 직접 실행 시 일부 환경에서 OMP 관련 충돌이 발생할 수 있습니다.
+> * 반드시 `run_server.py` 사용을 권장합니다.
+
+#### 🔑 API 키 설정
+
+`.env` 파일에 OpenAI API 키를 설정합니다.
+
+```env
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx
+```
+
+* 키가 없거나 유효하지 않은 경우 **자동으로 Mock(Demo) 모드**로 전환
+* UI 및 전체 파이프라인 테스트 가능
+
+---
 
 ### 3. 프론트엔드 실행 (Port: 5173)
-`frontend` 폴더로 이동하여 실행합니다.
 
 ```bash
 cd frontend
@@ -66,13 +123,34 @@ npm install
 npm run dev
 ```
 
+---
+
 ### 4. 접속
-브라우저에서 [http://localhost:5173](http://localhost:5173) 주소로 접속하세요.
+
+브라우저에서 아래 주소로 접속합니다.
+
+```
+http://localhost:5173
+```
 
 ---
 
-## 🧪 문제 해결 (Troubleshooting)
+## 🔐 보안 및 안정성
 
-- **API 키 오류 (401 Error)**: `.env` 파일의 `OPENAI_API_KEY`가 정확한지, 공백이 없는지 확인하세요. 오류가 지속되면 `verify_api_key_v2.py` 스크립트를 실행하여 진단할 수 있습니다.
-- **업로드 멈춤**: 백엔드 서버(`uvicorn`)가 켜져 있는지 확인하세요.
-- **언어 지원**: 현재 EasyOCR 모델 호환성 문제로 일부 언어 조합(예: 중국어 번체)에서 텍스트 감지가 제한될 수 있습니다. (현재 한국어/영어 최적화됨)
+* API Key는 **서버에서만 사용** (클라이언트 노출 없음)
+* 키 오류(401 Unauthorized) 발생 시:
+
+  * 자동 Mock 응답 처리
+  * 서비스 중단 없이 UI 유지
+
+##
+
+```
+```
+## 캡쳐
+
+web
+
+<img width="1896" height="912" alt="image" src="https://github.com/user-attachments/assets/21d7454b-eefc-4e68-a7b5-f08132b3140b" />
+<img width="1893" height="894" alt="image" src="https://github.com/user-attachments/assets/d1f91ace-b85f-4bb3-82f2-da5d88a2f902" />
+
