@@ -1,4 +1,4 @@
-<img width="754" height="408" alt="image" src="https://github.com/user-attachments/assets/522051f4-5d61-4ad7-b043-ab7ed12202cb" /># AI Visual Translator Evaluator (AI 시각 번역기 평가 도구)
+# AI Visual Translator Evaluator (AI 시각 번역기 평가 도구)
 
 **VisualTrans AI**는 이미지를 입력으로 받아 텍스트를 추출(OCR)하고, 번역(Translation)한 뒤 배경 복원(Inpainting)과 텍스트 합성(Synthesis)을 수행하는 **엔드투엔드 AI 시각 번역 파이프라인**를 웹에서 시각적으로 검증·평가하는 플랫폼입니다.
 
